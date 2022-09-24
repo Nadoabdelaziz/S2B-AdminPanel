@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\Role;
+use DB;
+use Illuminate\Support\Facades\View;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,5 +28,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        $roles = DB::table('roles')->get();
+        $users = DB::table('users')->get();
+
+
+        View::share('roles', $roles);
+        View::share('users', $users);
+
     }
 }

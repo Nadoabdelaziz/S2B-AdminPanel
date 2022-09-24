@@ -1,11 +1,22 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
+
+<?php
+$current_user_role = auth()->user()->role_user;
+$all_roles;
+foreach ($roles as $role) {
+   if($role->role == $current_user_role){
+    $all_roles = $role;
+   }
+}
+
+?>
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-university"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">My App</div>
+        <div class="sidebar-brand-text mx-3">{{$all_roles->id}}</div>
     </a>
 
     <!-- Divider -->
@@ -21,129 +32,148 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Distributor
-    </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#taTpDropDownDistr"
-            aria-expanded="true" aria-controls="taTpDropDown">
-            <i class="fas fa-user-alt"></i>
-            <span>Distributor Management</span>
-        </a>
-        <div id="taTpDropDownDistr" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Distributor Management:</h6>
-                <a class="collapse-item" href="{{ route('distributor.index') }}">List</a>
-                <a class="collapse-item" href="{{ route('distributor.create') }}">Add New</a>
-                {{-- <a class="collapse-item" href="">Import Data</a> --}}
-            </div>
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Distributor
         </div>
-    </li>
 
-    <!-- Divider -->
+
+        
+    @if($all_roles->dist == '1')
+        <!-- distributor -->
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#taTpDropDownDistr"
+                aria-expanded="true" aria-controls="taTpDropDown">
+                <i class="fas fa-user-alt"></i>
+                <span>Distributor Management</span>
+            </a>
+            <div id="taTpDropDownDistr" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Distributor Management:</h6>
+                    <a class="collapse-item" href="{{ route('distributor.index') }}">List</a>
+                    <a class="collapse-item" href="{{ route('distributor.create') }}">Add New</a>
+                    {{-- <a class="collapse-item" href="">Import Data</a> --}}
+                </div>
+            </div>
+        </li>
+
+
+        <!-- end distributor  -->
+
+
+        <!-- Divider -->
+        <!-- <hr class="sidebar-divider">
+
+        
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#taTpDropDownSales"
+                aria-expanded="true" aria-controls="taTpDropDown">
+                <i class="fas fa-user-alt"></i>
+                <span>Sales Management</span>
+            </a>
+            <div id="taTpDropDownSales" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Sales Management:</h6>
+                    <a class="collapse-item" href="{{ route('distributor.index') }}">List</a>
+                    <a class="collapse-item" href="{{ route('distributor.create') }}">Add New</a>
+                    {{-- <a class="collapse-item" href="">Import Data</a> --}}
+                </div>
+            </div>
+        </li> -->
+
+    @endif
+
     <hr class="sidebar-divider">
 
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#taTpDropDownSales"
-            aria-expanded="true" aria-controls="taTpDropDown">
-            <i class="fas fa-user-alt"></i>
-            <span>Sales Management</span>
-        </a>
-        <div id="taTpDropDownSales" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Distributor Management:</h6>
-                <a class="collapse-item" href="{{ route('distributor.index') }}">List</a>
-                <a class="collapse-item" href="{{ route('distributor.create') }}">Add New</a>
-                {{-- <a class="collapse-item" href="">Import Data</a> --}}
+    @if($all_roles->deal == '1')
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#taTpDropDownDeal"
+                aria-expanded="true" aria-controls="taTpDropDown">
+                <i class="fas fa-user-alt"></i>
+                <span>Dealer Management</span>
+            </a>
+            <div id="taTpDropDownDeal" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Dealer Management:</h6>
+                    <a class="collapse-item" href="{{ route('distributor.index') }}">List</a>
+                    <a class="collapse-item" href="{{ route('distributor.create') }}">Add New</a>
+                    {{-- <a class="collapse-item" href="">Import Data</a> --}}
+                </div>
             </div>
-        </div>
-    </li>
-
-    <hr class="sidebar-divider">
-
-
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#taTpDropDownDeal"
-            aria-expanded="true" aria-controls="taTpDropDown">
-            <i class="fas fa-user-alt"></i>
-            <span>Dealer Management</span>
-        </a>
-        <div id="taTpDropDownDeal" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Dealer Management:</h6>
-                <a class="collapse-item" href="{{ route('distributor.index') }}">List</a>
-                <a class="collapse-item" href="{{ route('distributor.create') }}">Add New</a>
-                {{-- <a class="collapse-item" href="">Import Data</a> --}}
-            </div>
-        </div>
-    </li>
-
+        </li>
+    @endif
     <hr>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Management
-    </div>
+    @if($all_roles->users == '1' || $all_roles->roles == '1' )
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#taTpDropDown"
-            aria-expanded="true" aria-controls="taTpDropDown">
-            <i class="fas fa-user-alt"></i>
-            <span>User Management</span>
-        </a>
-        <div id="taTpDropDown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">User Management:</h6>
-                <a class="collapse-item" href="">List</a>
-                <a class="collapse-item" href="">Add New</a>
-                <a class="collapse-item" href="">Import Data</a>
-            </div>
-        </div>
-    </li>
-
-    <!-- Divider -->
-    {{-- <hr class="sidebar-divider"> --}}
         <!-- Heading -->
-        {{-- <div class="sidebar-heading">
-            Admin Section
-        </div> --}}
+        <div class="sidebar-heading">
+            Management
+        </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Masters</span>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#taTpDropDown"
+                aria-expanded="true" aria-controls="taTpDropDown">
+                <i class="fas fa-user-alt"></i>
+                <span>User Management</span>
             </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div id="taTpDropDown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Role & Permissions</h6>
-                    <a class="collapse-item" href="{{ route('roles.index') }}">Roles</a>
-                    <a class="collapse-item" href="">Permissions</a>
+                    <h6 class="collapse-header">User Management:</h6>
+                    <a class="collapse-item" href="">List</a>
+                    <a class="collapse-item" href="">Add New</a>
+                    <a class="collapse-item" href="">Import Data</a>
                 </div>
             </div>
         </li>
 
         <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
+        {{-- <hr class="sidebar-divider"> --}}
+            <!-- Heading -->
+            {{-- <div class="sidebar-heading">
+                Admin Section
+            </div> --}}
 
-    <li class="nav-item">
-        <form action="logout" method="get">
-        {{ csrf_field() }}
-        <i class="fas fa-sign-out-alt"></i>
-            <button type="submit"  class="btn btn-primary btn-block">
-                Logout
-            </button>
-        </form>
-        <div>{{auth()->user()}}</div>
-    </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Masters</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Role & Permissions</h6>
+                        <a class="collapse-item" href="{{ route('roles.index') }}">Roles</a>
+                        <a class="collapse-item" href="">Permissions</a>
+                    </div>
+                </div>
+            </li>
+
+    @endif        
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+        <li class="nav-item">
+            <form action="logout" method="get">
+            {{ csrf_field() }}
+            <i class="fas fa-sign-out-alt"></i>
+                <button type="submit"  class="btn btn-primary btn-block">
+                    Logout
+                </button>
+            </form>
+            <div>{{auth()->user()}}</div>
+        </li>
 
     <!-- <form action="logout" method="get">
                 {{ csrf_field() }}

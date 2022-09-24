@@ -30,6 +30,11 @@ Route::get('logout',function(){
 
 
 
+Route::get('roles.index', function () {
+    return view('roles.index');
+});
+
+
 // Route::get('dealers','App\Http\Controllers\DealerController@index');
 
 

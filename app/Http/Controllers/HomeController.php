@@ -22,20 +22,15 @@ class HomeController extends Controller
         $login = User::where(['email' => $email, 'password' => $password])->first();
 
 
-        if (!empty($login)) {
+        if (!empty($login)) 
+        {
 
                //Store Session
                auth()->login($login);
                $request->session()->put(['id' => $login->id]);
-              //  dd($login->role_user);
-
-               if($login->role_user == '1'){
                      return view('home');
-               }
-               else{
-                     return redirect('/');
-               }
-        } else {
+        }
+         else {
                return back()->with('error', 'Email Or Password Wrong!');
         }
  }
