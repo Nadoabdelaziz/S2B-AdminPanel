@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RolesController;
+
 use App\Http\Controllers\DistributorController;
 
 /*
@@ -34,11 +36,22 @@ Route::get('roles.index', function () {
     return view('roles.index');
 });
 
+// Route::get('roles.edit', function () {
+//     return view('roles.edit/{id}')->name('edit');
+// });
+
+ Route::get('roles.edit',[RolesController::class, 'edit'])->name('edit');
+
 
 // Route::get('dealers','App\Http\Controllers\DealerController@index');
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+Route::post('Set_Roles', [RolesController::class, 'SetRoles'])->name('Set_Roles');
+
+
 
 // Roles
 Route::resource('roles', App\Http\Controllers\RolesController::class);

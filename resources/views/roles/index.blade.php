@@ -4,6 +4,7 @@
 
 @section('content')
 
+
 <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -36,6 +37,7 @@
                       </thead>
                       <tbody>
                         @foreach($roles as $role)
+                            <?php $id = $role->role ?>
                             <tr>
                                 <td>{{ ($role->role) == '1' ? 'SuperAdmin' : 
                                         (($role->role) == '2' ? 'Distributor':
@@ -87,7 +89,9 @@
                                         @endif</td>
                                 </td>
                                 <td>
-                                    <button class="btn btn-warning">Edit</button>
+                                        <a class="btn btn-warning" href="{{route('roles.edit',$id)}}">
+                                            Edit
+                                        </a> 
                                 </td>
                             </tr>
                         @endforeach    

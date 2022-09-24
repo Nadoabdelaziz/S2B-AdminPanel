@@ -8,8 +8,48 @@ use Illuminate\Support\Facades\DB;
 // use Spatie\Permission\Models\Role;
 use App\Models\Role;
 
+
 class RolesController extends Controller
 {
+    
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $roles = Role::where('id',"=", $id)->first();
+
+        return view('roles.edit',['myroles'=> $roles]);
+        
+        //
+    }
+
+    public function SetRoles(Request $request )
+    {
+        $roles = Role::where('role',$request->role_id)->first();
+
+        // dd($request->all());
+        // if(isset($roles)){
+        //     Role::where('role',$request->role_id)->update([
+        //         'dist' => $request->dist,
+        //         'deal' => $request->deal,
+        //         'users' => $request->users,
+        //         'roles' => $request->roles
+        //     ]);
+        // }
+
+        DB::update('update roles set dist = ? where role = ? ' , [$request->dist,$request->user_role]);
+
+
+
+        return view('home');
+        
+    }
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -52,17 +92,6 @@ class RolesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }

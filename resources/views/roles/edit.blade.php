@@ -4,6 +4,8 @@
 
 @section('content')
 
+
+
 <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -21,212 +23,123 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Distributor Details</h6>
         </div>
-        <form method="POST" action="">
-            @csrf
-            <div class="card-body">
-                <div class="form-group row">
-
-                    {{-- First Name --}}
-                    <div class="col-sm-3 mb-3 mt-3 mb-sm-0">
-                        <label>Distributor Name <span style="color:red;">*</span></label>
-                        <input 
-                            type="text" 
-                            class="form-control form-control-user @error('first_name') is-invalid @enderror" 
-                            id="exampleFirstName"
-                            placeholder="Distributor Name" 
-                            name="first_name" 
-                            value="{{ old('first_name') }}">
-
-                        @error('first_name')
-                            <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-
-                    {{-- Email --}}
-                    <div class="col-sm-3 mb-3 mt-3 mb-sm-0">
-                        <label>Email <span style="color:red;">*</span></label>
-                        <input 
-                            type="email" 
-                            class="form-control form-control-user @error('email') is-invalid @enderror" 
-                            id="exampleEmail"
-                            placeholder="Email" 
-                            name="email" 
-                            value="{{ old('email') }}">
-
-                        @error('email')
-                            <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-
-                    {{-- Mobile Number --}}
-                    <div class="col-sm-3 mb-3 mt-3 mb-sm-0">
-                        <label>Mobile Number <span style="color:red;">*</span></label>
-                        <input 
-                            type="text" 
-                            class="form-control form-control-user @error('mobile_number') is-invalid @enderror" 
-                            id="exampleMobile"
-                            placeholder="Mobile Number" 
-                            name="mobile_number" 
-                            value="{{ old('mobile_number') }}">
-
-                        @error('mobile_number')
-                            <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-                    {{-- Mobile Number --}}
-                    <div class="col-sm-3 mb-3 mt-3 mb-sm-0">
-                        <label>Mobile Number <span style="color:red;">*</span></label>
-                        <input 
-                            type="text" 
-                            class="form-control form-control-user @error('mobile_number') is-invalid @enderror" 
-                            id="exampleMobile"
-                            placeholder="Mobile Number" 
-                            name="mobile_number" 
-                            value="{{ old('mobile_number') }}">
-
-                        @error('mobile_number')
-                            <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Payment Details</h6>
-            </div>
+        <form action="<?php echo url('/') ?>/Set_Roles"  method="post">
+            {{ csrf_field() }}
 
             <div class="card-body">
-                <div class="form-group row">
-                    <div class="col-sm-12 mb-3 mt-3 mb-sm-0" style="margin-top:0px !important">
-                        <div class="row">
-                            <div class="col-sm-4 mb-3 mt-3 mb-sm-0">
-                                <span style="color:red;">*</span>Payment Type</label>
-                                <select class="form-control form-control-payment @error('status') is-invalid @enderror" name="status">
-                                    <option>Select Payment Type</option>
-                                    <option value="1">Cheque</option>
-                                    <option value="2">NEFT</option>
-                                </select>
-                                @error('status')
-                                    <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
+                <div class="form-group row" style="justify-content: end;">
+
+                    <input name="role_id" style="display:none" value="{{$myroles->role}}" type="text">
+
+                    <h3 class="mt-2" style="text-align-last: center;margin: 26px;flex: 1 1 auto;font-weight: 600;">Table Distributors</h3>
+                    <!-- distributors -->
+                    <div class="container" style="display: flex;justify-content: end;margin-bottom: 50px;border-style: solid;padding-bottom: 55px;">
+                        <div class="col-lg-5 mb-3 mt-4 mb-sm-0">
+                            <label style="font-size: larger;">Distributors List <span style="color: red;">*</span></label>
+                            <select name="dist" id="access" style="text-align-last: center;width: 48%;display: block;">
+                                <option  {{ ($myroles->dist == '1') ? 'selected' : '' }}  value="1"> YES</option>
+                                <option  {{ ($myroles->dist == '0') ? 'selected' : '' }}  value="0"> NO</option>
+                            </select> 
+                        </div>
+
+                        <div class="col-lg-5 mb-3 mt-4 mb-sm-0">
+                            <label style="font-size: larger;" >Distributors Create <span style="color: red;">*</span></label>
+                            <select name="dist2" id="access" style="text-align-last: center;width: 48%;display: block;">
+                                <option  {{ ($myroles->dist == '1') ? 'selected' : '' }}  value="1"> YES</option>
+                                <option  {{ ($myroles->dist == '0') ? 'selected' : '' }}  value="0"> NO</option>
+                            </select> 
                         </div>
                     </div>
 
-                    <div class="col-sm-12 mb-3 mt-3 mb-sm-0 cheque_payment" style="margin-top:0px !important">
-                        <div class="row">
-                            {{-- First Name --}}
-                            <div class="col-sm-4 mb-3 mt-3 mb-sm-0">
-                                <label>Bank Name <span style="color:red;">*</span></label>
-                                <input 
-                                    type="text" 
-                                    class="form-control form-control-user @error('first_name') is-invalid @enderror" 
-                                    id="exampleFirstName"
-                                    placeholder="Bank Name" 
-                                    name="bank_name" 
-                                    value="{{ old('bank_name') }}">
+                
 
-                                @error('bank_name')
-                                    <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
+                    <h3 class="mt-5" style="text-align-last: center;margin: 26px;flex: 1 1 auto;font-weight: 600;">Table Dealers</h3>
+                    <!-- dealers -->
+                    <div class="container" style="display: flex;justify-content: end;margin-bottom: 50px;border-style: solid;padding-bottom: 55px;">
 
-                            {{-- Bank IFSC --}}
-                            <div class="col-sm-4 mb-3 mt-3 mb-sm-0">
-                                <label>Bank IFSC <span style="color:red;">*</span></label>
-                                <input 
-                                    type="text" 
-                                    class="form-control form-control-user @error('last_name') is-invalid @enderror" 
-                                    id="exampleLastName"
-                                    placeholder="Bank IFSC" 
-                                    name="last_name" 
-                                    value="{{ old('last_name') }}">
+                        <div class="col-lg-5 mb-3 mt-4 mb-sm-0">
+                            <label style="font-size: larger;">Dealers Table 
+                                <span style="color: red;">*</span>
+                            </label> 
+                            
+                            <select name="deal" id="access" style="text-align-last: center;width: 48%;display: block;">
+                                <option  {{ ($myroles->deal == '1') ? 'selected' : '' }}  value="1"> YES</option>
+                                <option  {{ ($myroles->deal == '0') ? 'selected' : '' }}  value="0"> NO</option>
+                            </select>
+                        </div>
 
-                                @error('last_name')
-                                    <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
+                        <div class="col-lg-5 mb-3 mt-4 mb-sm-0">
+                            <label style="font-size: larger;">Dealers Table 
+                                <span style="color: red;">*</span>
+                            </label> 
+                            
+                            <select name="deal2" id="access" style="text-align-last: center;width: 48%;display: block;">
+                            <option  {{ ($myroles->deal == '1') ? 'selected' : '' }}  value="1"> YES</option>
+                            <option  {{ ($myroles->deal == '0') ? 'selected' : '' }}  value="0"> NO</option>
 
-                            {{-- Cheque Number --}}
-                            <div class="col-sm-4 mb-3 mt-3 mb-sm-0">
-                                <label>Cheque Number <span style="color:red;">*</span></label>
-                                <input 
-                                    type="email" 
-                                    class="form-control form-control-user @error('email') is-invalid @enderror" 
-                                    id="exampleEmail"
-                                    placeholder="Cheque Number" 
-                                    name="email" 
-                                    value="{{ old('email') }}">
-
-                                @error('email')
-                                    <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
+                            </select>
                         </div>
                     </div>
 
-                    <div class="col-sm-12 mb-3 mt-3 mb-sm-0 neft_payment" style="margin-top:0px !important">
-                        <div class="row">
-                            {{-- First Name --}}
-                            <div class="col-sm-4 mb-3 mt-3 mb-sm-0">
-                                <label>Neft Number <span style="color:red;">*</span></label>
-                                <input 
-                                    type="text" 
-                                    class="form-control form-control-user @error('first_name') is-invalid @enderror" 
-                                    id="exampleFirstName"
-                                    placeholder="Neft Number" 
-                                    name="first_name" 
-                                    value="{{ old('first_name') }}">
 
-                                @error('first_name')
-                                    <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
 
-                            {{-- Last Name --}}
-                            <div class="col-sm-4 mb-3 mt-3 mb-sm-0">
-                                <label>NEFT Details <span style="color:red;">*</span></label>
-                                <input 
-                                    type="text" 
-                                    class="form-control form-control-user @error('last_name') is-invalid @enderror" 
-                                    id="exampleLastName"
-                                    placeholder="NEFT Details" 
-                                    name="last_name" 
-                                    value="{{ old('last_name') }}">
+                    <h3 class="mt-5" style="text-align-last: center;margin: 26px;flex: 1 1 auto;font-weight: 600;">Table Users</h3>
+                    <!-- users -->
+                    <div class="container" style="display: flex;justify-content: end;margin-bottom: 50px;border-style: solid;padding-bottom: 55px;">
 
-                                @error('last_name')
-                                    <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
+                        <div class="col-lg-5 mb-3 mt-4 mb-sm-0">
+                            <label style="font-size: larger;">Users Table 
+                                <span style="color: red;">*</span>
+                            </label> 
+                            <select name="users"  text-align-last:="" id="access" name="access" style="text-align-last: center;width: 48%;display: block;">
+                                <option  {{ ($myroles->users == '1') ? 'selected' : '' }}  value="1"> YES</option>
+                                <option  {{ ($myroles->users == '0') ? 'selected' : '' }}  value="0"> NO</option>
+                            </select>
+                        </div>
+                        
+
+                        <div class="col-lg-5 mb-3 mt-4 mb-sm-0">
+                            <label style="font-size: larger;">Users Table 
+                                <span style="color: red;">*</span>
+                            </label> 
+                            <select name="users2"  text-align-last:="" id="access" name="access" style="text-align-last: center;width: 48%;display: block;">
+                                <option  {{ ($myroles->users == '1') ? 'selected' : '' }}  value="1"> YES</option>
+                                <option  {{ ($myroles->users == '0') ? 'selected' : '' }}  value="0"> NO</option>
+                            </select>
+                        </div>
+                    </div>    
+
+
+                    
+                    <!-- roles -->
+                    <h3 class="mt-5" style="text-align-last: center;margin: 26px;flex: 1 1 auto;font-weight: 600;">Table Roles & Permissions</h3>
+                    <div class="container" style="display: flex;justify-content: end;margin-bottom: 50px;border-style: solid;padding-bottom: 55px;">
+
+                        <div class="col-lg-5 mb-3 mt-5 mb-sm-0" style="">
+                            <label style="font-size: larger;">Roles &amp; Permissions Table 
+                                <span style="color: red;">*</span>
+                            </label>
+                            
+                            <select name="roles" id="access" text-align-last:="" style="text-align-last: center;width: 48%;display: block;">
+                                <option  {{ ($myroles->roles == '1') ? 'selected' : '' }}  value="1"> YES</option>
+                                <option  {{ ($myroles->roles == '0') ? 'selected' : '' }}  value="0"> NO</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-5 mb-3 mt-5 mb-sm-0" style="">
+                            <label style="font-size: larger;">Roles &amp; Permissions Table 
+                                <span style="color: red;">*</span>
+                            </label>
+                            
+                            <select name="roles2"  name="access" id="access" text-align-last:="" style="text-align-last: center;width: 48%;display: block;">
+                                <option  {{ ($myroles->roles == '1') ? 'selected' : '' }}  value="1"> YES</option>
+                                <option  {{ ($myroles->roles == '0') ? 'selected' : '' }}  value="0"> NO</option>
+                            </select>
                         </div>
                     </div>
 
                 </div>
-            </div>
 
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Product Details</h6>
-            </div>
-
-            <div class="card-body">
-                <div class="form-group row">
-                    <div class="col-sm-12 mb-3 mt-3 mb-sm-0" style="margin-top:0px !important">
-                        <div class="row">
-                            <div class="col-sm-4 mb-3 mt-3 mb-sm-0">
-                                <span style="color:red;">*</span>Product</label>
-                                <select class="form-control form-control-product @error('status') is-invalid @enderror" name="status">
-                                    <option>Select Product</option>
-                                    <option value="1">product1</option>
-                                    <option value="2">Product2</option>
-                                </select>
-                                @error('status')
-                                    <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="card-footer text-center">
@@ -235,6 +148,15 @@
             </div>
         </form>
     </div>
+
+    <style>
+            
+    .container{
+    display: flex;
+    margin-bottom: 31px;
+    justify-content: end;
+    }
+    </style>
 
 </div>
 
