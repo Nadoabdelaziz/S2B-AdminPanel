@@ -1,22 +1,34 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
+@if(auth()->user())
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+@endif
 
 <?php
-$current_user_role = auth()->user()->role_user;
-$all_roles;
-foreach ($roles as $role) {
-   if($role->role == $current_user_role){
-    $all_roles = $role;
-   }
+
+if(auth()->user()){
+
+    $current_user_role = auth()->user()->role_user;
+    $all_roles;
+    foreach ($roles as $role) {
+       if($role->role == $current_user_role){
+        $all_roles = $role;
+       }
+    }
 }
 
+
+
+
+
 ?>
+
+@if(isset($all_roles) == 'true')
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-university"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">{{$all_roles->id}}</div>
+        <div class="sidebar-brand-text mx-3">{{isset($all_roles->id) ? $all_roles->id : '' }}</div>
     </a>
 
     <!-- Divider -->
@@ -55,8 +67,11 @@ foreach ($roles as $role) {
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Distributor Management:</h6>
                     <a class="collapse-item" href="{{ route('distributor.index') }}">List</a>
-                    <a class="collapse-item" href="{{ route('distributor.create') }}">Add New</a>
-                    {{-- <a class="collapse-item" href="">Import Data</a> --}}
+                    
+                    @if($all_roles->dist_add == '1')
+                        <a class="collapse-item" href="{{ route('distributor.create') }}">Add New</a>
+                        {{-- <a class="collapse-item" href="">Import Data</a> --}}
+                    @endif    
                 </div>
             </div>
         </li>
@@ -100,9 +115,12 @@ foreach ($roles as $role) {
             <div id="taTpDropDownDeal" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Dealer Management:</h6>
-                    <a class="collapse-item" href="{{ route('distributor.index') }}">List</a>
-                    <a class="collapse-item" href="{{ route('distributor.create') }}">Add New</a>
-                    {{-- <a class="collapse-item" href="">Import Data</a> --}}
+                    <a class="collapse-item" href="{{ route('dealer.index') }}">List</a>
+
+                    @if($all_roles->deal_add == '1')
+                        <a class="collapse-item" href="{{ route('dealer.create') }}">Add New</a>
+                        {{-- <a class="collapse-item" href="">Import Data</a> --}}
+                    @endif
                 </div>
             </div>
         </li>
@@ -112,7 +130,7 @@ foreach ($roles as $role) {
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    @if($all_roles->users == '1' || $all_roles->roles == '1' )
+    @if($all_roles->users == '1' )
 
         <!-- Heading -->
         <div class="sidebar-heading">
@@ -129,14 +147,23 @@ foreach ($roles as $role) {
             <div id="taTpDropDown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">User Management:</h6>
-                    <a class="collapse-item" href="">List</a>
-                    <a class="collapse-item" href="">Add New</a>
-                    <a class="collapse-item" href="">Import Data</a>
+                    <a class="collapse-item" href="{{route('users.index')}}">List</a>
+                    
+                    @if($all_roles->users_edit == '1')
+                        <!-- <a class="collapse-item" href="">Edit</a>
+                        <a class="collapse-item" href="">Import Data</a> -->
+                    @endif    
                 </div>
             </div>
         </li>
 
+        @endif
+
+        @if($all_roles->roles == '1' )
+
+
         <!-- Divider -->
+        
         {{-- <hr class="sidebar-divider"> --}}
             <!-- Heading -->
             {{-- <div class="sidebar-heading">
@@ -154,12 +181,13 @@ foreach ($roles as $role) {
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Role & Permissions</h6>
                         <a class="collapse-item" href="{{ route('roles.index') }}">Roles</a>
-                        <a class="collapse-item" href="">Permissions</a>
+                        <!-- <a class="collapse-item" href="">Permissions</a> -->
                     </div>
                 </div>
             </li>
 
-    @endif        
+        @endif    
+    
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -172,7 +200,7 @@ foreach ($roles as $role) {
                     Logout
                 </button>
             </form>
-            <div>{{auth()->user()}}</div>
+            <!-- <div>{{auth()->user()}}</div> -->
         </li>
 
     <!-- <form action="logout" method="get">
@@ -187,4 +215,5 @@ foreach ($roles as $role) {
     </div>
 
 
+    @endif
 </ul>

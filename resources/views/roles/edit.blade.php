@@ -43,10 +43,10 @@
                         </div>
 
                         <div class="col-lg-5 mb-3 mt-4 mb-sm-0">
-                            <label style="font-size: larger;" >Distributors Create <span style="color: red;">*</span></label>
+                            <label style="font-size: larger;" >Distributors Add <span style="color: red;">*</span></label>
                             <select name="dist2" id="access" style="text-align-last: center;width: 48%;display: block;">
-                                <option  {{ ($myroles->dist == '1') ? 'selected' : '' }}  value="1"> YES</option>
-                                <option  {{ ($myroles->dist == '0') ? 'selected' : '' }}  value="0"> NO</option>
+                                <option  {{ ($myroles->dist_add == '1') ? 'selected' : '' }}  value="1"> YES</option>
+                                <option  {{ ($myroles->dist_add == '0') ? 'selected' : '' }}  value="0"> NO</option>
                             </select> 
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                     <div class="container" style="display: flex;justify-content: end;margin-bottom: 50px;border-style: solid;padding-bottom: 55px;">
 
                         <div class="col-lg-5 mb-3 mt-4 mb-sm-0">
-                            <label style="font-size: larger;">Dealers Table 
+                            <label style="font-size: larger;">Dealers List 
                                 <span style="color: red;">*</span>
                             </label> 
                             
@@ -69,13 +69,13 @@
                         </div>
 
                         <div class="col-lg-5 mb-3 mt-4 mb-sm-0">
-                            <label style="font-size: larger;">Dealers Table 
+                            <label style="font-size: larger;">Dealers Add 
                                 <span style="color: red;">*</span>
                             </label> 
                             
                             <select name="deal2" id="access" style="text-align-last: center;width: 48%;display: block;">
-                            <option  {{ ($myroles->deal == '1') ? 'selected' : '' }}  value="1"> YES</option>
-                            <option  {{ ($myroles->deal == '0') ? 'selected' : '' }}  value="0"> NO</option>
+                            <option  {{ ($myroles->deal_add == '1') ? 'selected' : '' }}  value="1"> YES</option>
+                            <option  {{ ($myroles->deal_add == '0') ? 'selected' : '' }}  value="0"> NO</option>
 
                             </select>
                         </div>
@@ -88,7 +88,7 @@
                     <div class="container" style="display: flex;justify-content: end;margin-bottom: 50px;border-style: solid;padding-bottom: 55px;">
 
                         <div class="col-lg-5 mb-3 mt-4 mb-sm-0">
-                            <label style="font-size: larger;">Users Table 
+                            <label style="font-size: larger;">Users List 
                                 <span style="color: red;">*</span>
                             </label> 
                             <select name="users"  text-align-last:="" id="access" name="access" style="text-align-last: center;width: 48%;display: block;">
@@ -99,12 +99,12 @@
                         
 
                         <div class="col-lg-5 mb-3 mt-4 mb-sm-0">
-                            <label style="font-size: larger;">Users Table 
+                            <label style="font-size: larger;">Users Edit 
                                 <span style="color: red;">*</span>
                             </label> 
                             <select name="users2"  text-align-last:="" id="access" name="access" style="text-align-last: center;width: 48%;display: block;">
-                                <option  {{ ($myroles->users == '1') ? 'selected' : '' }}  value="1"> YES</option>
-                                <option  {{ ($myroles->users == '0') ? 'selected' : '' }}  value="0"> NO</option>
+                                <option  {{ ($myroles->users_edit == '1') ? 'selected' : '' }}  value="1"> YES</option>
+                                <option  {{ ($myroles->users_edit == '0') ? 'selected' : '' }}  value="0"> NO</option>
                             </select>
                         </div>
                     </div>    
@@ -116,7 +116,7 @@
                     <div class="container" style="display: flex;justify-content: end;margin-bottom: 50px;border-style: solid;padding-bottom: 55px;">
 
                         <div class="col-lg-5 mb-3 mt-5 mb-sm-0" style="">
-                            <label style="font-size: larger;">Roles &amp; Permissions Table 
+                            <label style="font-size: larger;">Roles &amp; Permissions List 
                                 <span style="color: red;">*</span>
                             </label>
                             
@@ -127,13 +127,13 @@
                         </div>
 
                         <div class="col-lg-5 mb-3 mt-5 mb-sm-0" style="">
-                            <label style="font-size: larger;">Roles &amp; Permissions Table 
+                            <label style="font-size: larger;">Roles &amp; Permissions Add 
                                 <span style="color: red;">*</span>
                             </label>
                             
                             <select name="roles2"  name="access" id="access" text-align-last:="" style="text-align-last: center;width: 48%;display: block;">
-                                <option  {{ ($myroles->roles == '1') ? 'selected' : '' }}  value="1"> YES</option>
-                                <option  {{ ($myroles->roles == '0') ? 'selected' : '' }}  value="0"> NO</option>
+                                <option  {{ ($myroles->roles_edit == '1') ? 'selected' : '' }}  value="1"> YES</option>
+                                <option  {{ ($myroles->roles_edit == '0') ? 'selected' : '' }}  value="0"> NO</option>
                             </select>
                         </div>
                     </div>

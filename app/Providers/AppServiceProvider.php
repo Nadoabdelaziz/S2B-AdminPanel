@@ -30,10 +30,18 @@ class AppServiceProvider extends ServiceProvider
         //
         $roles = DB::table('roles')->get();
         $users = DB::table('users')->get();
+        $dists = DB::table('distributors')->get();
+        $dealers = DB::table('dealers')->get();
+
 
 
         View::share('roles', $roles);
         View::share('users', $users);
+        View::share('dists', $dists);
+
+        View::share('dealers', $dealers);
+
+
 
     }
 }

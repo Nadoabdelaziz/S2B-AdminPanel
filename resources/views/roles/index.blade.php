@@ -25,12 +25,20 @@
                     <p class="card-description"> Add class <code>.table</code> </p>
                     <table class="table">
                       <thead>
-                        <tr>
+                        <tr style="white-space: nowrap;">
                           <th>User</th>
-                          <th>Distributors Table</th>
-                          <th>Dealers Table</th>
-                          <th style="padding-left: 40px;">Users Table</th>
-                          <th>Roles & Permissions Table</th>
+
+                          <th>Distributors List</th>
+                          <th>Distributors Add</th>
+
+                          <th style="padding-left: 26px;">Dealers List</th>
+                          <th>Dealers Add</th>
+
+                          <th style="padding-left: 31px;">Users List</th>
+                          <th style="padding-left: 27px;">Users Edit</th>
+
+                          <th style="padding-left: 32px;">Roles List</th>
+
 
                           <th>Status</th>
                         </tr>
@@ -55,7 +63,20 @@
                                                 <i class="fa fa-times-circle" aria-hidden="true"></i>
                                             </h3>
                                         @endif
-                                </td>        
+                                </td>      
+                                
+                                <td>
+                                        @if($role->dist_add == '1')
+                                            <h3 style="color: lawngreen;padding-left: 48px;">
+                                                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                            </h3>
+                                        @else
+                                            <h3 style="color: red;padding-left: 48px;">
+                                                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                            </h3>
+                                        @endif
+                                </td>  
+
                                 <td>
                                         @if($role->deal == '1')
                                             <h3 style="color: lawngreen;padding-left: 48px;">
@@ -67,6 +88,20 @@
                                             </h3>
                                         @endif
                                 </td>
+
+                                <td>
+                                        @if($role->deal_add == '1')
+                                            <h3 style="color: lawngreen;padding-left: 48px;">
+                                                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                            </h3>
+                                        @else
+                                            <h3 style="color: red;padding-left: 48px;">
+                                              <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                            </h3>
+                                        @endif
+                                </td>
+
+
                                 <td>
                                     @if($role->users == '1')
                                             <h3 style="color: lawngreen;padding-left: 48px;">
@@ -76,7 +111,21 @@
                                             <h3 style="color: red;padding-left: 48px;">
                                                 <i class="fa fa-times-circle" aria-hidden="true"></i>
                                             </h3>
-                                        @endif</td>
+                                        @endif
+                                </td>
+
+                                <td>
+                                    @if($role->users_edit == '1')
+                                            <h3 style="color: lawngreen;padding-left: 48px;">
+                                                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                            </h3>
+                                        @else
+                                            <h3 style="color: red;padding-left: 48px;">
+                                                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                            </h3>
+                                        @endif
+                                </td>
+
                                 <td>
                                         @if($role->roles == '1')
                                             <h3 style="color: lawngreen;padding-left: 48px;">
@@ -88,6 +137,7 @@
                                             </h3>
                                         @endif</td>
                                 </td>
+
                                 <td>
                                         <a class="btn btn-warning" href="{{route('roles.edit',$id)}}">
                                             Edit

@@ -14,4 +14,30 @@ class Dealer extends Model
         $value = DB::table('dealers')->orderBy('id','asc')->get();
         return $value;
     }
+
+    protected $fillable = [
+
+        'name',
+        'email',
+
+        'mobile_number',
+        'country',
+
+        'city',
+        'state',
+
+        'bank_ifsc',
+        'bank_name',
+
+        'payment_type',
+        'cheque_number',
+
+        'neft_number',
+        'neft_details',
+
+        'role_id',
+        'approval_status',
+        'distributor_id'
+
+    ];
 }

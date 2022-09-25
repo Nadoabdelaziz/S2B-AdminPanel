@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+
 use Session;
 
 
@@ -20,6 +22,7 @@ class HomeController extends Controller
         $password = $request->password;
 
         $login = User::where(['email' => $email, 'password' => $password])->first();
+        
 
 
         if (!empty($login)) 
@@ -42,4 +45,10 @@ class HomeController extends Controller
                      return redirect('/');
               }
        }
+
+       public function userslist() {
+              return view('users.index');
+       }
+
+       
 }

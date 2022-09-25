@@ -56,6 +56,8 @@
     <script src="{{asset('admin/js/sb-admin-2.min.js')}}"></script>
     
     @yield('scripts')
+    @yield('styles')
+
 </body>
 
 </html>

@@ -1,3 +1,9 @@
+@extends('layouts.app')
+
+@section('title', 'Add Distributor')
+
+@section('content')
+
 <body class="hold-transition login-page">
           <div class="login-box">
                  <div class="login-logo">
@@ -33,11 +39,11 @@
                                                     </div>
                                              </div>
                                       </div>
-                                      <div class="row">
+                                      <div class="row mt-5" style="justify-content: center;">
 
                                              <!-- /.col -->
-                                             <div class="col-4">
-                                                    <button type="submit"  class="btn btn-primary btn-block" style="margin-left: 109px;">Sign In</button>
+                                             <div class="col-2" >
+                                                    <button type="submit"  class="btn btn-primary btn-block">Sign In</button>
                                              </div>
                                              <!-- /.col -->
                                       </div>
@@ -49,4 +55,7 @@
           </div>
           <!-- /.login-box -->
 
-   </body
+</body>
+
+
+@endsection

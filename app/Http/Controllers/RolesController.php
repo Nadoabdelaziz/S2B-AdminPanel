@@ -24,28 +24,29 @@ class RolesController extends Controller
 
         return view('roles.edit',['myroles'=> $roles]);
         
-        //
     }
 
     public function SetRoles(Request $request )
     {
-        $roles = Role::where('role',$request->role_id)->first();
+            
+            DB::table('roles')->where('role', $request->role_id)->update([
+            'dist' => $request->dist,
+            'dist_add' => $request->dist2,
 
-        // dd($request->all());
-        // if(isset($roles)){
-        //     Role::where('role',$request->role_id)->update([
-        //         'dist' => $request->dist,
-        //         'deal' => $request->deal,
-        //         'users' => $request->users,
-        //         'roles' => $request->roles
-        //     ]);
-        // }
+            'deal' => $request->deal,
+            'deal_add' => $request->deal2,
 
-        DB::update('update roles set dist = ? where role = ? ' , [$request->dist,$request->user_role]);
+            'users' => $request->users,
+            'users_edit' => $request->users2,
 
+            'roles' => $request->roles,
+            'roles_edit' => $request->roles2
+
+    ]);
 
 
-        return view('home');
+
+        return redirect('/home');
         
     }
 

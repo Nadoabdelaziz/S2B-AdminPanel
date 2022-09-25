@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolesController;
 
 use App\Http\Controllers\DistributorController;
+use App\Http\Controllers\DealerController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -57,5 +59,24 @@ Route::post('Set_Roles', [RolesController::class, 'SetRoles'])->name('Set_Roles'
 Route::resource('roles', App\Http\Controllers\RolesController::class);
 
 
+Route::get('/users', [HomeController::class, 'userslist'])->name('users.index');
+
+
 Route::get('/distributors', [DistributorController::class, 'index'])->name('distributor.index');
 Route::get('/distributors_add', [DistributorController::class, 'addDistributor'])->name('distributor.create');
+Route::post('/Add_Distributor', [DistributorController::class, 'Add_Distributor'])->name('Add_Distributor');
+Route::get('/dist_approve/{id}', [DistributorController::class, 'dist_approve'])->name('dist_approve');
+
+
+
+
+Route::get('/dealers', [DealerController::class, 'index'])->name('dealer.index');
+Route::get('/dealers_add', [DealerController::class, 'addDealer'])->name('dealer.create');
+Route::post('/Add_Dealer', [DealerController::class, 'Add_Dealer'])->name('Add_Dealer');
+Route::get('/dealer_approve/{id}', [DealerController::class, 'dealer_approve'])->name('dealer_approve');
+
+
+
+
+
+

@@ -9,7 +9,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Distributors List</h1>
+        <h1 class="h3 mb-0 text-gray-800">Dealers List</h1>
         <a href="{{route('distributor.index')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
             class="fas fa-arrow-left fa-sm text-white-50"></i> Back
         </a>
@@ -35,10 +35,17 @@
 
                           <th>City</th>
 
+                          <th>Distributor ID</th>
+
+
+                          <th>Approval</th>
+
+
+
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach($users as $dist)
+                        @foreach($dealers as $dist)
                             <tr>
                                 <td>{{ $dist->id }}</td>
                                 
@@ -51,6 +58,33 @@
                                 <td>{{ $dist->country }}</td>
 
                                 <td>{{ $dist->city }}</td>
+
+                                <td style="padding-left: 51px;"> {{ $dist->distributor_id }}</td>
+
+
+                                @if((auth()->user()->role_user) == '1')
+                                  @if(($dist->approval_status) == '0')
+                                  <td>
+                                    <a class="btn btn-success" href="{{route('dealer_approve',$dist->id)}}">
+                                        Approve
+                                    </a> 
+                                  </td>
+
+                                                                   
+                                 @else
+                                 
+                                 <td style="font-weight: 700;color:lightgreen">Approved</td>
+
+                                
+                                 @endif   
+                                
+                                @else
+
+                                <td style="font-weight: 700;color:{{($dist->approval_status) == '1'  ? 'lightgreen' : 'red' }}">{{ ($dist->approval_status) == '1' ? 'Approved' : 'Not Approved' }}</td>
+
+                                @endif
+
+
 
                             </tr>
                         @endforeach    

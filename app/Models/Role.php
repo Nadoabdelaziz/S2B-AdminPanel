@@ -11,9 +11,17 @@ class Role extends Model
 
     protected $fillable = [
         'dist',
+        'dist2',
+
         'deal',
+        'deal2',
+
         'users',
-        'roles'
+        'users2',
+
+        'roles',
+        'roles2'
+
 
     ];
 }
